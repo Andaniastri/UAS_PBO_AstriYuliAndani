@@ -81,6 +81,11 @@ foreach ($rowsPrestasi as $row) {
     <title>Dashboard Registrasi & Keuangan Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Smooth transition untuk menyembunyikan panel */
+        .panel-dashboard { transition: all 0.2s ease-in-out; }
+        .hidden-panel { display: none !important; }
+    </style>
 </head>
 <body class="bg-slate-100 font-sans antialiased min-h-screen">
 
@@ -91,21 +96,25 @@ foreach ($rowsPrestasi as $row) {
                 <i class="fa-solid fa-graduation-cap text-2xl text-blue-400"></i>
                 <span class="text-xl font-bold tracking-wider">SI-REGIST</span>
             </div>
-            <nav class="flex-1 space-y-3 text-sm">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-blue-600 rounded-lg text-white font-medium">
-                    <i class="fa-solid fa-chart-pie w-5"></i> Dashboard Keuangan
-                </a>
-                <div class="pt-4 text-xs font-semibold uppercase text-slate-500 tracking-wider px-4">Menu Kategori</div>
-                <a href="#panel-mandiri" class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+            
+            <nav class="flex-1 space-y-2 text-sm">
+                <button onclick="bukaKategori('semua', this)" class="btn-menu w-full flex items-center gap-3 px-4 py-3 bg-blue-600 rounded-lg text-white font-medium transition-all text-left">
+                    <i class="fa-solid fa-chart-pie w-5"></i> Semua Kategori
+                </button>
+                
+                <div class="pt-4 text-xs font-semibold uppercase text-slate-500 tracking-wider px-4">Filter Tampilan</div>
+                
+                <button onclick="bukaKategori('mandiri', this)" class="btn-menu w-full flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all text-left">
                     <i class="fa-solid fa-user-tie text-blue-400 w-5"></i> Kategori Mandiri
-                </a>
-                <a href="#panel-bidikmisi" class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+                </button>
+                <button onclick="bukaKategori('bidikmisi', this)" class="btn-menu w-full flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all text-left">
                     <i class="fa-solid fa-id-card text-green-400 w-5"></i> Kategori Bidikmisi
-                </a>
-                <a href="#panel-prestasi" class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all">
+                </button>
+                <button onclick="bukaKategori('prestasi', this)" class="btn-menu w-full flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-all text-left">
                     <i class="fa-solid fa-award text-purple-400 w-5"></i> Kategori Prestasi
-                </a>
+                </button>
             </nav>
+            
             <div class="text-xs text-slate-500 text-center border-t border-slate-800 pt-4">
                 PBO Semester 2 &copy; 2026
             </div>
@@ -118,8 +127,8 @@ foreach ($rowsPrestasi as $row) {
                     <h1 class="text-2xl font-extrabold text-slate-800">Dashboard Registrasi Pembayaran</h1>
                     <p class="text-xs text-slate-400 font-medium">Sistem Monitoring Terpadu UKT Mahasiswa Berbasis Objek</p>
                 </div>
-                <div class="flex items-center gap-2 text-sm font-semibold bg-slate-50 border px-4 py-2 rounded-lg text-slate-700">
-                    <i class="fa-solid fa-calendar-day text-blue-500"></i> Semester Genap
+                <div id="status-aktif" class="flex items-center gap-2 text-sm font-semibold bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg text-blue-700">
+                    <i class="fa-solid fa-layer-group"></i> Menampilkan: Semua
                 </div>
             </header>
 
@@ -164,7 +173,7 @@ foreach ($rowsPrestasi as $row) {
                     </div>
                 </div>
 
-                <section id="panel-mandiri" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <section id="panel-mandiri" class="panel-dashboard bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center text-white">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-user-tie text-xl"></i>
@@ -198,7 +207,7 @@ foreach ($rowsPrestasi as $row) {
                     </div>
                 </section>
 
-                <section id="panel-bidikmisi" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <section id="panel-bidikmisi" class="panel-dashboard bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4 flex justify-between items-center text-white">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-id-card text-xl"></i>
@@ -230,7 +239,7 @@ foreach ($rowsPrestasi as $row) {
                     </div>
                 </section>
 
-                <section id="panel-prestasi" class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <section id="panel-prestasi" class="panel-dashboard bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                     <div class="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 flex justify-between items-center text-white">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-award text-xl"></i>
@@ -267,6 +276,42 @@ foreach ($rowsPrestasi as $row) {
             </main>
         </div>
     </div>
+
+    <script>
+        function bukaKategori(kategori, elemenMenu) {
+            // 1. Sembunyikan atau Tampilkan panel berdasarkan pilihan
+            const semuaPanel = document.querySelectorAll('.panel-dashboard');
+            const statusLabel = document.getElementById('status-aktif');
+            
+            semuaPanel.forEach(panel => {
+                if (kategori === 'semua') {
+                    panel.classList.remove('hidden-panel');
+                    statusLabel.innerHTML = '<i class="fa-solid fa-layer-group"></i> Menampilkan: Semua';
+                    statusLabel.className = "flex items-center gap-2 text-sm font-semibold bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg text-blue-700";
+                } else {
+                    if (panel.id === 'panel-' + kategori) {
+                        panel.classList.remove('hidden-panel');
+                        // Update teks status header atas
+                        let warna = kategori === 'mandiri' ? 'text-blue-700 bg-blue-50 border-blue-200' : (kategori === 'bidikmisi' ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-purple-700 bg-purple-50 border-purple-200');
+                        statusLabel.innerHTML = '<i class="fa-solid fa-filter"></i> Menampilkan: Kategori ' + kategori.toUpperCase();
+                        statusLabel.className = "flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg border " + warna;
+                    } else {
+                        panel.classList.add('hidden-panel');
+                    }
+                }
+            });
+
+            // 2. Mengubah style menu active di sidebar agar dinamis
+            const semuaTombolMenu = document.querySelectorAll('.btn-menu');
+            semuaTombolMenu.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'font-medium');
+                btn.classList.add('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            });
+            
+            elemenMenu.classList.remove('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+            elemenMenu.classList.add('bg-blue-600', 'text-white', 'font-medium');
+        }
+    </script>
 
 </body>
 </html>
