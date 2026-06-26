@@ -125,7 +125,7 @@ foreach ($rowsPrestasi as $row) {
             <header class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-20 shadow-sm">
                 <div>
                     <h1 class="text-2xl font-extrabold text-slate-800">Dashboard Registrasi Pembayaran</h1>
-                    <p class="text-xs text-slate-400 font-medium">Sistem Monitoring Terpadu UKT Mahasiswa Berbasis Objek</p>
+                    
                 </div>
                 <div id="status-aktif" class="flex items-center gap-2 text-sm font-semibold bg-blue-50 border border-blue-200 px-4 py-2 rounded-lg text-blue-700">
                     <i class="fa-solid fa-layer-group"></i> Menampilkan: Semua
