@@ -23,13 +23,13 @@ abstract class Mahasiswa {
     // --- ABSTRACT METHODS ---
     // Method abstrak tanpa body/isi, wajib diimplementasikan di class anak
     
-    /**
+    /*
      * Menghitung total tagihan semester berjalan
      * @return int
      */
     abstract public function hitungTagihanSemester(): int;
 
-    /**
+    /*
      * Menampilkan informasi spesifik akademik berdasarkan jalur masuk
      * @return void
      */
