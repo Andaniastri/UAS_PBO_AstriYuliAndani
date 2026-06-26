@@ -11,25 +11,18 @@ class MahasiswaBidikmisi extends Mahasiswa {
         $this->danaSakuSubsidi = $danaSakuSubsidi;
     }
 
-    // Method Query Select-Where Khusus Mahasiswa Bidikmisi
-    public static function getById(int $id, PDO $db): ?self {
-        $stmt = $db->prepare("SELECT * FROM tabel_mahasiswa WHERE id_mahasiswa = :id AND jenis_pembayaran = 'bidikmisi'");
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$row) return null;
-
-        return new self(
-            $row['id_mahasiswa'],
-            "Nama Mahasiswa " . $row['id_mahasiswa'],
-            $row['nim'],
-            1,
-            $row['tarif_ukt_nominal'],
-            $row['nomor_kip_kuliah'],
-            $row['dana_saku_subsidi']
-        );
+    /**
+     * OVERRIDING: Mahasiswa Bidikmisi
+     * Gratis penuh (0 Rupiah) ditanggung negara
+     */
+    public function hitungTagihanSemester(): int {
+        return 0;
     }
 
-    public function hitungTagihanSemester(): int { return 0; }
-    public function tampilkanSpesifikasiAkademik(): void { /* ... isi body ... */ }
+    public function tampilkanSpesifikasiAkademik(): void {
+        echo "=== MAHASISWA BIDIKMISI ===\n";
+        echo "NIM          : {$this->nim}\n";
+        echo "No KIP-K     : {$this->nomorKipKuliah}\n";
+        echo "Total Tagihan: Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . " (Gratis/KIP-K)\n\n";
+    }
 }

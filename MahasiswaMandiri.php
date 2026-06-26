@@ -11,26 +11,19 @@ class MahasiswaMandiri extends Mahasiswa {
         $this->namaWali = $namaWali;
     }
 
-    // Method Query Select-Where Khusus Mahasiswa Mandiri
-    public static function getById(int $id, PDO $db): ?self {
-        $stmt = $db->prepare("SELECT * FROM tabel_mahasiswa WHERE id_mahasiswa = :id AND jenis_pembayaran = 'mandiri'");
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$row) return null;
-
-        // Nilai $nama_mahasiswa dan $semester di-hardcode/disimulasikan karena tidak ada di tabel database tahap 1
-        return new self(
-            $row['id_mahasiswa'],
-            "Nama Mahasiswa " . $row['id_mahasiswa'], // Simulasi nama
-            $row['nim'],
-            1, // Simulasi semester
-            $row['tarif_ukt_nominal'],
-            $row['golongan_ukt'],
-            $row['nama_wali']
-        );
+    /**
+     * OVERRIDING: Mahasiswa Mandiri
+     * Tarif UKT + Biaya Operasional Flat Rp 100.000
+     */
+    public function hitungTagihanSemester(): int {
+        return $this->tarif_ukt_nominal + 100000;
     }
 
-    public function hitungTagihanSemester(): int { return $this->tarif_ukt_nominal; }
-    public function tampilkanSpesifikasiAkademik(): void { /* ... isi body ... */ }
+    public function tampilkanSpesifikasiAkademik(): void {
+        echo "=== MAHASISWA MANDIRI ===\n";
+        echo "NIM          : {$this->nim}\n";
+        echo "UKT Dasar    : Rp " . number_format($this->tarif_ukt_nominal, 0, ',', '.') . "\n";
+        echo "Biaya Ops    : Rp 100.000\n";
+        echo "Total Tagihan: Rp " . number_format($this->hitungTagihanSemester(), 0, ',', '.') . "\n\n";
+    }
 }
