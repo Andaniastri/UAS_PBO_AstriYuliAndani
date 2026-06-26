@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `table_mahasiswa`
+-- Table structure for table `tabel_mahasiswa`
 --
 
-CREATE TABLE `table_mahasiswa` (
+CREATE TABLE `tabel_mahasiswa` (
   `id_mahasiswa` int NOT NULL,
   `nim` varchar(15) NOT NULL,
   `tarif_ukt_nominal` int NOT NULL,
@@ -41,10 +41,11 @@ CREATE TABLE `table_mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `table_mahasiswa`
+-- Dumping data for table `tabel_mahasiswa`
 --
 
-INSERT INTO `table_mahasiswa` (`id_mahasiswa`, `nim`, `tarif_ukt_nominal`, `jenis_pembayaran`, `golongan_ukt`, `nama_wali`, `nomor_kip_kuliah`, `dana_saku_subsidi`, `nama_instansi_beasiswa`, `minimal_ipk_syarat`) VALUES
+-- Mengubah kata 'table_mahasiswa' menjadi 'tabel_mahasiswa' pada perintah INSERT
+INSERT INTO `tabel_mahasiswa` (`id_mahasiswa`, `nim`, `tarif_ukt_nominal`, `jenis_pembayaran`, `golongan_ukt`, `nama_wali`, `nomor_kip_kuliah`, `dana_saku_subsidi`, `nama_instansi_beasiswa`, `minimal_ipk_syarat`) VALUES
 (1, '230101001', 5000000, 'mandiri', 'Golongan 3', 'Budi Santoso', NULL, NULL, NULL, NULL),
 (2, '230101002', 7500000, 'mandiri', 'Golongan 5', 'Ahmad Subarjo', NULL, NULL, NULL, NULL),
 (3, '230101003', 5000000, 'mandiri', 'Golongan 3', 'Siti Aminah', NULL, NULL, NULL, NULL),
@@ -72,9 +73,9 @@ INSERT INTO `table_mahasiswa` (`id_mahasiswa`, `nim`, `tarif_ukt_nominal`, `jeni
 --
 
 --
--- Indexes for table `table_mahasiswa`
+-- Indexes for table `tabel_mahasiswa`
 --
-ALTER TABLE `table_mahasiswa`
+ALTER TABLE `tabel_mahasiswa`
   ADD PRIMARY KEY (`id_mahasiswa`);
 
 --
@@ -82,9 +83,9 @@ ALTER TABLE `table_mahasiswa`
 --
 
 --
--- AUTO_INCREMENT for table `table_mahasiswa`
+-- AUTO_INCREMENT for table `tabel_mahasiswa`
 --
-ALTER TABLE `table_mahasiswa`
+ALTER TABLE `tabel_mahasiswa`
   MODIFY `id_mahasiswa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
